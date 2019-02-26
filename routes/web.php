@@ -18,4 +18,9 @@ Route::group(['middleware' => 'checkAdminLogin', 'prefix' => 'admincp', 'namespa
 Route::get('admincp/login', ['as' => 'getLogin', 'uses' => 'Admin\AdminLoginController@getLogin']);
 Route::post('admincp/login', ['as' => 'postLogin', 'uses' => 'Admin\AdminLoginController@postLogin']);
 Route::get('admincp/logout', ['as' => 'getLogout', 'uses' => 'Admin\AdminLoginController@getLogout']);
+route::get('login',['as' => 'getLogin','uses' => 'TestController@index']);
+Route::post('login',['as' => 'postLogin','uses' => 'TestController@check']);
+Route::get('/admin',['as' => 'admin',function(){
+	 return view('Admin.home');
+}]);
 

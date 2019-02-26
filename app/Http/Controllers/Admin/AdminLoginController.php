@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Controllers\Controller;
 // khai báo sử dụng loginRequest
-use App\Http\Controllers\Requests\LoginRequest;
+use App\Http\Requests\LoginRequest;
 use Auth;
 use App\User;
 class AdminLoginController extends Controller
@@ -21,21 +21,17 @@ class AdminLoginController extends Controller
         }
 
     }
-
-    /**
-     * @param LoginRequest $request
-     * @return RedirectResponse
-     */
     public function postLogin(LoginRequest $request)
     {
-        $login = [
-            'email' => $request->txtEmail,
-            'password' => $request->txtPassword,
-            'level' => 1,
-            'status' => 1
-        ];
-        if (Auth::attempt($login)) {
-            return redirect('admincp');
+        // $login = [
+        //     'email' => $request->txtEmail,
+        //     'password' => hash($request->txtPassword),
+        //     'level' => 1,
+        //     'status' => 1
+        // ];
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return "bạn đã login thành công";
         } else {
             return redirect()->back()->with('status', 'Email hoặc Password không chính xác');
         }
