@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddLevelStatusToUsersTable extends Migration
+class CreateCategoryTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class AddLevelStatusToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-             $table->tinyInteger('level')->after('password')->default(0);
-             $table->tinyInteger('status')->after('level')->default(0);
+        Schema::create('category', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('username')->unique();
+            $table->string('slug');
+            $table->integer('parent_id');
+            $table->timestamps();
         });
     }
 
@@ -26,8 +29,6 @@ class AddLevelStatusToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('category');
     }
 }
