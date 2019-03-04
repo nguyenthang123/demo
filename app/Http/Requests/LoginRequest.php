@@ -24,8 +24,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'txtEmail' => 'required',
-            'txtPassword' => 'required'
+            'username' => 'required',
+            'password' => 'required'
         ];
     }
 
@@ -36,8 +36,8 @@ class LoginRequest extends FormRequest
     public function messages()
     {
         return [
-            'txtEmail.required' => 'Vui lòng nhập email',
-            'txtPassword.required' => 'Vui lòng nhập password'
+            'username.required' => 'Vui lòng nhập email',
+            'password.required' => 'Vui lòng nhập password'
         ];
     }
 }

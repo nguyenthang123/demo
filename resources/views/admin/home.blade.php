@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="{{ asset('public_admin/assets/vendor/fonts/flag-icon-css/flag-icon.min.css') }}">
     <title> Admin arena - @yield('title') </title>
 </head>
-
 <body>
     <!-- ============================================================== -->
     <!-- main wrapper -->
